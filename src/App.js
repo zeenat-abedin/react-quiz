@@ -14,6 +14,8 @@ function reducer(state, action) {
   switch (action.type) {
     case "dataReceived":
       return { ...state, questions: action.payload, status: "ready" };
+    case "dataFailed":
+      return { ...state, status: "error" };
     default:
       throw new Error("Invalid Action Type");
   }
@@ -26,7 +28,7 @@ function App() {
     fetch(`http://localhost:8000/questions`)
       .then((res) => res.json())
       .then((data) => dispatch({ type: "dataReceived", payload: data }))
-      .catch((err) => console.error("Error"));
+      .catch((err) => dispatch({ type: "dataFailed" }));
   }, []);
 
   return (
