@@ -14,9 +14,11 @@ const initialState = {
   status: "loading",
   index: 0,
   answer: null,
+  points: 0,
 };
 
 function reducer(state, action) {
+  console.log("state", state);
   switch (action.type) {
     case "dataReceived":
       return { ...state, status: "ready", questions: action.payload };
@@ -25,7 +27,15 @@ function reducer(state, action) {
     case "start":
       return { ...state, status: "active" };
     case "newAnswer":
-      return { ...state, answer: action.payload };
+      const question = state.questions.at(state.index);
+      return {
+        ...state,
+        points:
+          action.payload === question.correctOption
+            ? state.points + 1
+            : state.points,
+        answer: action.payload,
+      };
     default:
       throw new Error("Invalid Action Type");
   }
