@@ -12,12 +12,13 @@ const initialState = {
 
   //loading, error, active, ready, finished
   status: "loading",
+  index: 0,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "dataReceived":
-      return { ...state, questions: action.payload, status: "ready" };
+      return { ...state, status: "ready", questions: action.payload };
     case "dataFailed":
       return { ...state, status: "error" };
     case "start":
@@ -28,7 +29,10 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [{ status, questions }, dispatch] = useReducer(reducer, initialState);
+  const [{ status, questions, index }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
   const numOfQuestions = questions.length;
 
@@ -49,7 +53,7 @@ function App() {
         {status === "ready" && (
           <StartScreen numOfQuestions={numOfQuestions} dispatch={dispatch} />
         )}
-        {status === "active" && <Question />}
+        {status === "active" && <Question question={questions[index]} />}
       </Main>
     </div>
   );
