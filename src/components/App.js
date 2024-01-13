@@ -27,13 +27,13 @@ function reducer(state, action) {
     case "start":
       return { ...state, status: "active" };
     case "newAnswer":
-      const question = state.questions.at(state.index);
+      const question = state.questions.at(state.index); //The state.index is assumed to be a variable that holds the current index of the question being accessed. So, the code is about getting the question at the current index of the list of questions in the state object.
       return {
         ...state,
         points:
           action.payload === question.correctOption
-            ? state.points + 1
-            : state.points,
+            ? state.points + question.points
+            : state.points, //If the action.payload (data being passed to the reducer function as part of a Redux action) matches the correctOption, then the points property is updated to be the current value of state.points plus the points value of the question object.
         answer: action.payload,
       };
     default:
