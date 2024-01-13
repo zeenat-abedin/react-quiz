@@ -1,5 +1,5 @@
 import React from "react";
-import Options from "./components/Options";
+import Options from "./Options";
 
 export default function Question({ question }) {
   console.log(question);
