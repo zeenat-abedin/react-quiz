@@ -5,7 +5,7 @@ export default function StartScreen({ numOfQuestions }) {
     <div className="">
       <h2>Welcome to the React Quiz!</h2>
       <h3>{numOfQuestions} questions to test your React Mastery</h3>
-      <button onClick={() => {}} id="start-btn">
+      <button className="btn btn-ui" onClick={() => {}} id="start-btn">
         Let's start
       </button>
     </div>
