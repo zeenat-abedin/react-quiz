@@ -8,6 +8,7 @@ export default function Progress({
 }) {
   return (
     <header className="progress">
+      <progress max={numOfQuestions} value={index} />
       <p>
         Question <strong>{index + 1}</strong>/{numOfQuestions}
       </p>
