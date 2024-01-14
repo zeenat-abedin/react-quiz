@@ -5,7 +5,7 @@ export default function FinishScreen({ points, maxPossiblePoints }) {
   return (
     <p className="result">
       You have scored <strong>{points}</strong> out of {maxPossiblePoints} (
-      {Math.ceil(percentage)})
+      {Math.ceil(percentage)}%)
     </p>
   );
 }

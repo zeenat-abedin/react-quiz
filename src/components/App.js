@@ -87,7 +87,12 @@ function App() {
               dispatch={dispatch}
               answer={answer}
             />
-            <NextButton dispatch={dispatch} answer={answer} />
+            <NextButton
+              index={index}
+              numOfQuestions={numOfQuestions}
+              dispatch={dispatch}
+              answer={answer}
+            />
           </>
         )}
         {status === "finished" && (
