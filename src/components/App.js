@@ -6,10 +6,10 @@ import Loader from "./Loader";
 import Error from "./Error";
 import StartScreen from "./StartScreen";
 import Question from "./Question";
+import NextButton from "./NextButton";
 
 const initialState = {
   questions: [],
-
   //loading, error, active, ready, finished
   status: "loading",
   index: 0,
@@ -33,9 +33,11 @@ function reducer(state, action) {
         points:
           action.payload === question.correctOption
             ? state.points + question.points
-            : state.points, //If the action.payload (data being passed to the reducer function as part of a Redux action) matches the correctOption, then the points property is updated to be the current value of state.points plus the points value of the question object.
+            : state.points, //If the action.payload (i.e., the data that is being passed to the reducer function as part of a Redux action) matches the correctOption, then the points property is updated to be the current value of state.points plus the points value of the question object.
         answer: action.payload,
       };
+    case "nextQuestion":
+      return { ...state, index: state.index + 1 };
     default:
       throw new Error("Invalid Action Type");
   }
@@ -67,11 +69,14 @@ function App() {
           <StartScreen numOfQuestions={numOfQuestions} dispatch={dispatch} />
         )}
         {status === "active" && (
-          <Question
-            question={questions[index]}
-            dispatch={dispatch}
-            answer={answer}
-          />
+          <>
+            <Question
+              question={questions[index]}
+              dispatch={dispatch}
+              answer={answer}
+            />
+            <NextButton dispatch={dispatch} answer={answer} />
+          </>
         )}
       </Main>
     </div>
