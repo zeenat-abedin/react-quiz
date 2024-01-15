@@ -114,13 +114,13 @@ function App() {
             />
             <Footer>
               <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
+              <NextButton
+                index={index}
+                numOfQuestions={numOfQuestions}
+                dispatch={dispatch}
+                answer={answer}
+              />
             </Footer>
-            <NextButton
-              index={index}
-              numOfQuestions={numOfQuestions}
-              dispatch={dispatch}
-              answer={answer}
-            />
           </>
         )}
         {status === "finished" && (
