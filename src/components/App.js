@@ -39,7 +39,7 @@ function reducer(state, action) {
         answer: action.payload,
       };
     case "nextQuestion":
-      return { ...state, index: state.index + 1 };
+      return { ...state, index: state.index + 1, answer: null };
     case "finish":
       return {
         ...state,
@@ -48,7 +48,7 @@ function reducer(state, action) {
           state.points > state.highScore ? state.points : state.highScore,
       };
     case "restart":
-      return { ...initialState, question: state.questions, status: "ready" };
+      return { ...initialState, status: "ready", question: state.questions };
     default:
       throw new Error("Invalid Action Type");
   }
