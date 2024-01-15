@@ -12,7 +12,6 @@ import FinishScreen from "./FinishScreen";
 
 const initialState = {
   questions: [],
-  //loading, error, active, ready, finished
   status: "loading",
   index: 0,
   answer: null,
@@ -40,6 +39,8 @@ function reducer(state, action) {
       };
     case "nextQuestion":
       return { ...state, index: state.index + 1 };
+    case "finish":
+      return { ...state, status: "finished" };
     default:
       throw new Error("Invalid Action Type");
   }
