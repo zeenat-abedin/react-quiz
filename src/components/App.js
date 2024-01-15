@@ -9,6 +9,8 @@ import Question from "./Question";
 import NextButton from "./NextButton";
 import Progress from "./Progress";
 import FinishScreen from "./FinishScreen";
+import Footer from "./Footer";
+import Timer from "./Timer";
 
 const initialState = {
   questions: [],
@@ -17,7 +19,10 @@ const initialState = {
   answer: null,
   points: 0,
   highScore: 0,
+  secondsRemaining: null,
 };
+
+const SECS_PER_QUESTION = 30;
 
 function reducer(state, action) {
   console.log("state", state);
@@ -27,7 +32,11 @@ function reducer(state, action) {
     case "dataFailed":
       return { ...state, status: "error" };
     case "start":
-      return { ...state, status: "active" };
+      return {
+        ...state,
+        status: "active",
+        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
+      };
     case "newAnswer":
       const question = state.questions.at(state.index); //The state.index is assumed to be a variable that holds the current index of the question being accessed. So, the code is about getting the question at the current index of the list of questions in the state object.
       return {
@@ -49,14 +58,23 @@ function reducer(state, action) {
       };
     case "restart":
       return { ...initialState, status: "ready", question: state.questions };
+    case "tick":
+      return {
+        ...state,
+        secondsRemaining: state.secondsRemaining - 1,
+        status:
+          state.secondsRemaining === 0 ? "finished" : state.secondsRemaining,
+      };
     default:
       throw new Error("Invalid Action Type");
   }
 }
 
 function App() {
-  const [{ status, questions, index, answer, points, highScore }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { status, questions, index, answer, points, highScore, secondsRemaining },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   const numOfQuestions = questions.length;
   const maxPossiblePoints = questions.reduce(
@@ -94,6 +112,9 @@ function App() {
               dispatch={dispatch}
               answer={answer}
             />
+            <Footer>
+              <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
+            </Footer>
             <NextButton
               index={index}
               numOfQuestions={numOfQuestions}
