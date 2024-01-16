@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Quiz App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple quiz app built using React. The app fetches a list of questions from a local JSON file and allows the user to answer them. The user has a limited amount of time to answer each question, and they earn points for each correct answer. The app keeps track of the user's progress and displays their score at the end of the quiz.
 
-## Available Scripts
+### Getting Started
 
-In the project directory, you can run:
+To run the app, you will need to have Node.js and npm installed. Once you have these installed, you can clone the repository and run the following commands:
 
-### `npm start`
+```
+npm install
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This will start the development server and open the app in your default browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Code Overview
 
-### `npm test`
+The app is written in React and uses the following libraries:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `react-router-dom` for routing
+- `axios` for making HTTP requests
+- `useReducer` for state management
 
-### `npm run build`
+The app consists of the following components:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `App`: The main component of the app. It renders the header, main, and footer components.
+- `Header`: The header component displays the app's title and a link to the start screen.
+- `Main`: The main component displays the current question, the answer options, and the progress bar.
+- `Loader`: The loader component is displayed while the app is loading the questions.
+- `Error`: The error component is displayed if there is an error loading the questions.
+- `StartScreen`: The start screen component is displayed when the app is first loaded. It allows the user to start the quiz.
+- `Question`: The question component displays the current question and the answer options.
+- `NextButton`: The next button component allows the user to move to the next question.
+- `Progress`: The progress component displays the user's progress through the quiz.
+- `FinishScreen`: The finish screen component is displayed when the user has completed the quiz. It shows the user's score and allows them to restart the quiz.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Code Explanation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The following is a step-by-step explanation of the code:
 
-### `npm run eject`
+1. The `App` component is the main component of the app. It renders the header, main, and footer components.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```javascript
+function App() {
+  const [
+    { status, questions, index, answer, points, highScore, secondsRemaining },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
