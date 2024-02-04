@@ -16,7 +16,6 @@ const initialState = {
 };
 
 function reducer(state, action) {
-  console.log("state", state);
   switch (action.type) {
     case "dataReceived":
       return { ...state, status: "ready", questions: action.payload };
@@ -79,6 +78,7 @@ function QuizProvider({ children }) {
       .then((data) => dispatch({ type: "dataReceived", payload: data }))
       .catch((err) => dispatch({ type: "dataFailed" }));
   }, []);
+
   <QuizContext.Provider
     value={{
       status,
