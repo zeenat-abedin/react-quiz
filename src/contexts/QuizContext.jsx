@@ -100,9 +100,8 @@ function QuizProvider({ children }) {
 //consuming the context
 function useQuiz() {
   const context = useContext(QuizContext);
-  if (context === undefined) {
+  if (context === undefined)
     throw new Error("QuizContext was used outside the QuizProvider");
-  }
   return context;
 }
 
