@@ -1,5 +1,4 @@
-import { useEffect, useReducer } from "react";
-
+import { useQuiz } from "../contexts/QuizContext";
 import Header from "./Header";
 import Main from "./Main";
 import Loader from "./Loader";
@@ -13,6 +12,18 @@ import Footer from "./Footer";
 import Timer from "./Timer";
 
 function App() {
+  const {
+    status,
+    numOfQuestions,
+    dispatch,
+    index,
+    points,
+    maxPossiblePoints,
+    questions,
+    answer,
+    secondsRemaining,
+    highScore,
+  } = useQuiz();
   return (
     <div className="app">
       <Header />
