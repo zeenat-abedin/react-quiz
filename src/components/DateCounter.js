@@ -3,13 +3,11 @@ import { useReducer } from "react";
 const initialState = { count: 0, step: 1 };
 
 function reducer(state, action) {
-  console.log(state, action);
-
   switch (action.type) {
-    case "inc":
-      return { ...state, count: state.count + state.step };
     case "dec":
       return { ...state, count: state.count - state.step };
+    case "inc":
+      return { ...state, count: state.count + state.step };
     case "setCount":
       return { ...state, count: action.payload };
     case "setStep":
@@ -30,11 +28,11 @@ function DateCounter() {
   date.setDate(date.getDate() + count);
 
   const dec = function () {
-    dispatch({ type: "dec", payload: -1 });
+    dispatch({ type: "dec" });
   };
 
   const inc = function () {
-    dispatch({ type: "inc", payload: 1 });
+    dispatch({ type: "inc" });
   };
 
   const defineCount = function (e) {
