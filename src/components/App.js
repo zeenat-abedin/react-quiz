@@ -34,17 +34,8 @@ function App() {
         {status === "ready" && <StartScreen />}
         {status === "active" && (
           <>
-            <Progress
-              index={index}
-              numOfQuestions={numOfQuestions}
-              points={points}
-              maxPossiblePoints={maxPossiblePoints}
-            />
-            <Question
-              question={questions[index]}
-              dispatch={dispatch}
-              answer={answer}
-            />
+            <Progress />
+            <Question />
             <Footer>
               <Timer />
               <NextButton />
