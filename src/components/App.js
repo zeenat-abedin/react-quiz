@@ -46,13 +46,8 @@ function App() {
               answer={answer}
             />
             <Footer>
-              <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
-              <NextButton
-                index={index}
-                numOfQuestions={numOfQuestions}
-                dispatch={dispatch}
-                answer={answer}
-              />
+              <Timer />
+              <NextButton />
             </Footer>
           </>
         )}
