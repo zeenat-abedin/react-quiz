@@ -12,18 +12,7 @@ import Footer from "./Footer";
 import Timer from "./Timer";
 
 function App() {
-  const {
-    status,
-    numOfQuestions,
-    dispatch,
-    index,
-    points,
-    maxPossiblePoints,
-    questions,
-    answer,
-    secondsRemaining,
-    highScore,
-  } = useQuiz();
+  const { status } = useQuiz();
   return (
     <div className="app">
       <Header />
@@ -42,14 +31,7 @@ function App() {
             </Footer>
           </>
         )}
-        {status === "finished" && (
-          <FinishScreen
-            points={points}
-            maxPossiblePoints={maxPossiblePoints}
-            highScore={highScore}
-            dispatch={dispatch}
-          />
-        )}
+        {status === "finished" && <FinishScreen />}
       </Main>
     </div>
   );
